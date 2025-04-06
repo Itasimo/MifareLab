@@ -1,6 +1,6 @@
 # MifareLab
 
-MifareLab is a desktop application built with Electron and React for analyzing and manipulating MIFARE card dumps. It provides a user-friendly interface to view, analyze, and compare MIFARE card data.
+MifareLab is a desktop application built with Electron and React for analyzing MIFARE card dumps. It provides a user-friendly interface to view, analyze, and compare MIFARE card data.
 
 ## About MIFARE Technology
 
@@ -12,7 +12,7 @@ MifareLab helps security researchers, system administrators, and enthusiasts und
 
 ### Deep Card Analysis
 MifareLab provides comprehensive analysis of MIFARE Classic 1K/4K and MIFARE Ultralight card dumps, revealing:
-- Hidden manufacturer data and card identifiers
+- Manufacturer data and card identifiers
 - Sector-by-sector breakdown of card contents
 - Detailed access condition interpretation
 - Value block identification and decoding
@@ -24,7 +24,7 @@ MifareLab leverages modern web technologies within a desktop application framewo
 
 - **React + Vite**: Uses React 19's latest features including concurrent rendering for responsive UI
 - **Electron**: Provides cross-platform desktop capabilities with native system access
-- **Crypto-JS**: Implements MIFARE-specific cryptographic operations
+- **Crypto-JS**: Used only for identifying the blocks in the DOM.
 - **TailwindCSS**: Enables responsive design with dark/light theme support
 
 The application architecture follows a clear separation of concerns:
@@ -35,6 +35,7 @@ The application architecture follows a clear separation of concerns:
 ## Future Development
 
 The roadmap for MifareLab includes:
+- Light mode
 - Settings page for application configuration and preferences
 - Help page with documentation and tutorials
 - Diff page supporting simultaneous comparison of up to 4 files using color coding
