@@ -1,0 +1,15 @@
+{
+    "HotBar": [
+        "Visualizza",
+        "Analizza",
+        "Confronta"
+    ],
+    "Menu": [
+        "Importa file",
+        "Impostazioni",
+        "Aiuto"
+    ],
+    "NoFile": "Nessun file selezionato",
+    "Sector": "Settore",
+    "ComingSoon": "In arrivo"
+}

@@ -1,0 +1,15 @@
+{
+    "HotBar": [
+        "View",
+        "Analyze",
+        "Diff"
+    ],
+    "Menu": [
+        "Import file",
+        "Settings",
+        "Help"
+    ],
+    "NoFile": "No file selected",
+    "Sector": "Sector",
+    "ComingSoon": "Coming soon"
+}

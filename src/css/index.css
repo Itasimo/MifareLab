@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@theme {
+    --color-light-primary: #f5f5f5;
+    --color-dark-primary: #121212;
+
+    --color-light-secondary: #f5f5f5;
+    --color-dark-secondary: #202020;
+
+    --color-light-tertiary: #f5f5f5;
+    --color-dark-tertiary: #303030;
+
+    --color-light-text: #000000;
+    --color-dark-text: #ffffff;
+
+    --font-inconsolata: "Inconsolata", monospace;
+}
+
+@font-face {
+    font-family: Inconsolata;
+    font-style: normal;
+    font-weight: 200 700;
+    font-display: swap;
+    src: url("/public/fonts/Inconsolata/Inconsolata-VariableFont_wdth%2Cwght.ttf")
+        format("ttf");
+}
+
+#HotBar {
+    -webkit-app-region: drag;
+}
+
+#HotBar > * {
+    -webkit-app-region: no-drag;
+}
+
+p,
+span {
+    width: fit-content;
+    cursor: default;
+}
+
+html.dark {
+    --sb-track-color: var(--color-dark-secondary);
+    --sb-thumb-color: var(--color-dark-tertiary);
+    
+    --sb-size: 8px;
+}
+html.light {
+    --sb-track-color: var(--color-light-secondary);
+    --sb-thumb-color: var(--color-light-tertiary);
+
+    --sb-size: 8px;
+}
+
+*::-webkit-scrollbar {
+    width: var(--sb-size);
+}
+
+*::-webkit-scrollbar-track {
+    background: var(--sb-track-color);
+    border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+    border-radius: 10px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+    * {
+        scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+    }
+}
+
+.HEXblock {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.HEXblock > span {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.TEXTblock {
+    display: flex;
+    flex-direction: row;
+}
+
+.TEXTblock > span {
+    display: flex;
+    flex-direction: row;
+}
+
+span[data-hover="true"] {
+    border-radius: 0.2rem;
+    transition: background-color 0.2s ease-in-out;
+}
