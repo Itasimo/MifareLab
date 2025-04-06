@@ -23,5 +23,11 @@ dist-ssr
 *.sln
 *.sw?
 
+# Build directories
+build
+dist
+out-tsc
+dist_electron
+
 # Lang files (still in review)
 de.json
