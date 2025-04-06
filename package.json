@@ -40,6 +40,7 @@
     "appId": "com.itasimo.mifarelab",
     "productName": "MifareLab",
     "copyright": "Copyright © 2025 Simone Palermo",
+    "icon": "public/Icon/icon.png",
     "mac": {
       "category": "public.app-category.utilities"
     },
@@ -49,11 +50,19 @@
     },
     "files": [
       "dist/**/*",
-      "electron/**/*"
+      "electron/**/*",
+      "package.json"
     ],
     "directories": {
       "buildResources": "assets",
       "output": "dist_electron"
-    }
+    },
+    "extends": null,
+    "extraResources": [
+      {
+        "from": "dist",
+        "to": "app/dist"
+      }
+    ]
   }
 }

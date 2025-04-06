@@ -68,11 +68,13 @@ Please see the contribution guidelines before submitting pull requests.
 - `@eslint/js` ^9.21.0 - ESLint JavaScript support
 - `eslint-plugin-react-hooks` ^5.1.0 - React Hooks linting
 - `eslint-plugin-react-refresh` ^0.4.19 - React Refresh support
+- `electron-builder` - Packaging and distribution tool for Electron applications
 
 ### Build Tools
 - `concurrently` ^9.1.2 - Run multiple commands concurrently
 - `cross-env` ^7.0.3 - Cross-platform environment variables
 - `wait-on` ^8.0.3 - Wait for resources to become available
+- `electron-builder` - Creates distributables for Windows, macOS, and Linux
 
 ## Getting Started
 
@@ -94,29 +96,30 @@ npm run app:build
 ## Available Scripts
 
 - `npm run dev` - Start Vite development server
-- `npm run build` - Build the React application
+- `npm run build` - Build the React application with TypeScript checks
 - `npm run serve` - Preview the built application
 - `npm run electron` - Start Electron in development mode
-- `npm run electron:pack` - Package the application
-- `npm run electron:dev` - Start development environment
-- `npm run electron:builder` - Build the Electron application
-- `npm run build:for:electron` - Build React for Electron
-- `npm run app:build` - Build the complete application
+- `npm run electron:pack` - Package the application without creating installers
+- `npm run electron:dev` - Start development environment (React + Electron)
+- `npm run electron:builder` - Build distributable packages using electron-builder
+- `npm run build:for:electron` - Build React specifically for Electron environment
+- `npm run app:build` - Complete production build process (React build + electron-builder)
 
 ## Project Structure
 
 ```
-├── electron/          # Electron main process files
+├── dist/             # Built React application
+├── dist_electron/    # Final packaged application builds
+├── electron/         # Electron main process files
 ├── public/           
 │   ├── fonts/        # Font files
 │   ├── lang/         # Language files
-│   └── vite.svg      # Application icon
-├── src/
-│   ├── assets/       # Static assets
-│   ├── components/   # React components
-│   ├── css/          # CSS styles
-│   ├── pages/        # Page components
-│   └── utils/        # Utility functions
+│   └── Icon/         # Application icons
+└── src/
+    ├── components/   # React components
+    ├── css/          # CSS styles
+    ├── pages/        # Page components
+    └── utils/        # Utility functions
 ```
 
 ## Contributing
