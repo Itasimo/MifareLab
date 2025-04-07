@@ -72,24 +72,13 @@ html.light {
     }
 }
 
-.HEXblock {
+.HEXblock, .HEXblock > span  {
     display: flex;
     flex-direction: row;
     gap: 1rem;
 }
 
-.HEXblock > span {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-}
-
-.TEXTblock {
-    display: flex;
-    flex-direction: row;
-}
-
-.TEXTblock > span {
+.TEXTblock,.TEXTblock > span {
     display: flex;
     flex-direction: row;
 }

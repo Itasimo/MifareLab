@@ -44,6 +44,10 @@ function View() {
 
     // State to manage UI localization strings, retrieved from sessionStorage
     const [language, setLanguage] = useState(JSON.parse(sessionStorage.getItem('language')) || null);
+
+    // State to store the file content and file path for restored files
+    const [fileContent, setFileContent] = useState(null);
+    const [filePath, setFilePath] = useState(null);
     
     /**
      * useEffect hook to load language settings from sessionStorage when component mounts.
@@ -97,6 +101,52 @@ function View() {
             window.removeEventListener('message', handleFileLoad);
         };
     }, []); // Empty dependency array ensures this effect runs only once when the component mounts.
+
+    // Add file selection handler
+    useEffect(() => {
+        // Handle file selection from dialog
+        window.electronAPI?.onFileSelected((filePaths) => {
+            if (filePaths && filePaths.length > 0) {
+                handleFileOpen(filePaths[0]);
+            }
+        });
+        
+        // Handle file restoration after reload
+        const handleFileRestored = (event) => {
+            console.log('File restored event received in View');
+            const { filePath, content } = event.detail;
+            setFilePath(filePath);
+            setFileContent(content);
+            
+            // Process the file content as needed
+            processFileContent(content);
+        };
+        
+        window.addEventListener('file-restored', handleFileRestored);
+        
+        return () => {
+            window.removeEventListener('file-restored', handleFileRestored);
+        };
+    }, []);
+    
+    // Function to handle file opening
+    const handleFileOpen = async (path) => {
+        try {
+            const content = await window.electronAPI.readFile(path);
+            setFilePath(path);
+            setFileContent(content);
+            
+            // Process file content
+            processFileContent(content);
+        } catch (error) {
+            console.error('Error reading file:', error);
+        }
+    };
+    
+    // Function to process file content and update UI
+    const processFileContent = (content) => {
+        // Your existing code to process the file content and update the UI
+    };
 
     /**
      * Converts an integer to a 2-character hexadecimal string.

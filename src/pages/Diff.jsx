@@ -19,7 +19,7 @@ function Diff() {
     }, []);
 
     return (
-        <div className='w-full h-full p-5 font-inconsolata dark:text-dark-text text-light-text'>
+        <div className='w-full h-full p-5 flex justify-center items-center font-inconsolata dark:text-dark-text text-light-text'>
             <h1>{language.ComingSoon}</h1>
         </div>
     )

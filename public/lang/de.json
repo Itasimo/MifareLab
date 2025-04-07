@@ -1,0 +1,15 @@
+{
+    "HotBar": [
+        "Anzeigen",
+        "Analysieren",
+        "Vergleichen"
+    ],
+    "Menu": [
+        "Datei importieren",
+        "Einstellungen",
+        "Hilfe"
+    ],
+    "NoFile": "Keine Datei ausgewählt",
+    "Sector": "Sektor",
+    "ComingSoon": "Bald verfügbar"
+}
