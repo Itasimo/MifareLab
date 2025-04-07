@@ -39,7 +39,7 @@ if (window.electronAPI) {
 }
 
 // Load language settings from sessionStorage
-const language = sessionStorage.getItem('language') ? JSON.parse(sessionStorage.getItem('language')) : null
+const language = localStorage.getItem('language') ? JSON.parse(localStorage.getItem('language')) : null
 if (language) {
     // If language exists in sessionStorage, use it
     sessionStorage.setItem('language', JSON.stringify(language))
@@ -47,12 +47,15 @@ if (language) {
     // Initialize application with the View page
     loadPage('View')
 } else {
-    // If no language is found, load the default Italian language file
-    import('../public/lang/it.json')
+    // If no language is found, load the default language file (en.json)
+    import('../public/lang/en.json')
         .then((module) => {
             const language = module.default
             // Store the language in sessionStorage for future use
             sessionStorage.setItem('language', JSON.stringify(language))
+            
+            // Save the language to localStorage for persistence
+            localStorage.setItem('language', JSON.stringify(language))
 
             // Initialize application with the View page
             loadPage('View')
