@@ -24,19 +24,29 @@ MifareLab leverages modern web technologies within a desktop application framewo
 
 - **React + Vite**: Uses React 19's latest features including concurrent rendering for responsive UI
 - **Electron**: Provides cross-platform desktop capabilities with native system access
-- **Crypto-JS**: Used only for identifying the blocks in the DOM.
+- **Crypto-JS**: Used only for identifying the blocks in the DOM
 - **TailwindCSS**: Enables responsive design with dark/light theme support
+- **Settings System**: Persistent user preferences with localized UI and theme options
 
 The application architecture follows a clear separation of concerns:
 - Card data parsing and processing is isolated in dedicated service modules
 - UI components follow atomic design principles for consistency
 - IPC communication channels manage secure data flow between Electron and React
+- Settings management with localStorage persistence and application-wide state
+
+## Features
+
+### Application Settings
+The settings page provides configuration options for:
+- Theme selection (Dark/Light modes)
+- Language preferences (English, Italian, German)
+- Developer tools toggle
+- Visual indicators for settings that require application restart
 
 ## Future Development
 
 The roadmap for MifareLab includes:
-- Light mode
-- Settings page for application configuration and preferences
+- Light mode (CSS)
 - Help page with documentation and tutorials
 - Diff page supporting simultaneous comparison of up to 4 files using color coding
 - Collaborative analysis features for team research

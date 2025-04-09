@@ -1,0 +1,31 @@
+{
+    "HotBar": [
+        "Visualizza",
+        "Analizza",
+        "Confronta"
+    ],
+    "Menu": [
+        "Importa file",
+        "Impostazioni",
+        "Aiuto"
+    ],
+    "NoFile": "Nessun file selezionato",
+    "Sector": "Settore",
+    "ComingSoon": "Disponibile a breve",
+    "Settings": [
+        {
+            "title": "Strumenti per sviluppatori",
+            "description": "Abilita gli strumenti per sviluppatori"
+        },
+        {
+            "title": "Tema",
+            "description": "Seleziona il tema dell'applicazione",
+            "options": ["Chiaro", "Scuro"]
+        },
+        {
+            "title": "Lingua",
+            "description": "Seleziona la lingua dell'applicazione",
+            "options": ["Italiano", "Inglese", "Tedesco"]
+        }
+    ]
+}

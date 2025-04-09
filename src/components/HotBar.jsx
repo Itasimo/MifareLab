@@ -9,6 +9,8 @@ import { loadPage } from "../main";
 import { DumpToJson } from "../utils/NFCDumptoJSON";
 import { convertUint8ToArray } from "../utils/convertUint8ToArray";
 
+import Settings from './Settings';
+
 /**
  * HotBar component 
  * @param {Object} props - Component props
@@ -38,17 +40,19 @@ function HotBar({ selectedPage }) {
 
     // Set up title bar overlay and adjust page margin based on hotbar height
     useEffect(() => {
-        const hotBar = document.querySelector('#HotBar');
+        const HotBar = document.querySelector('#HotBar');
         const htmlClass = document.documentElement.className;
         const isDarkTheme = htmlClass.includes('dark');
         const symbolColor = isDarkTheme ? 'dark-text' : 'light-text';
 
         // Adjust the main content area to account for hotbar height
-        document.getElementById('PageComponent').style.marginTop = hotBar.offsetHeight + 'px';
+        document.getElementById('PageComponent').style.marginTop = HotBar.offsetHeight + 'px';
+        document.getElementById('Settings').style.top = HotBar.offsetHeight + 'px';
+        document.getElementById('Settings').style.height = `calc(100vh - ${HotBar.offsetHeight}px)`;
 
         // Configure Electron title bar overlay with appropriate theme colors
         window.electronAPI.setTitleBarOverlay({
-            height: hotBar.offsetHeight,
+            height: HotBar.offsetHeight,
             color: "rgba(0, 0, 0, 0)",
             symbolColor: getComputedStyle(document.documentElement).getPropertyValue('--color-' + symbolColor).trim(),
         });
@@ -77,6 +81,25 @@ function HotBar({ selectedPage }) {
         });
     }, []);
 
+    useEffect(() => {
+
+        // Event listener to close settings when clicking outside of it
+        const handleCloseSettings = (event) => {
+            const { type, data } = event.data;
+            if (type === 'closeSettings') {
+                const settings = document.querySelector('#Settings');
+                settings.style.display = 'none';
+            }
+        }
+        // Attach event listener to close settings when clicking outside of it
+        window.addEventListener('message', handleCloseSettings);
+
+        // Clean up event listener on component unmount
+        return () => {
+            window.removeEventListener('message', handleCloseSettings);
+        };
+    }, []);
+
     /**
      * Opens file dialog to import NFC dump files
      * This function is exposed on the window object to be called from menu items
@@ -85,70 +108,90 @@ function HotBar({ selectedPage }) {
         window.electronAPI?.openFileDialog();
     };
 
+    /**
+     * Opens settings page
+     * This function is exposed on the window object to be called from menu items
+     */
+    window.Settings = () => {
+        console.log("Settings clicked");
+        
+        const settings = document.querySelector('#Settings');
+        settings.style.display = settings.style.display === 'none' ? 'flex' : 'none';
+    }
+
     return (
-        <div id="HotBar" className='hotbar flex fixed w-full bg-light-secondary dark:bg-dark-secondary'>
-            {/* Hamburger menu button and dropdown */}
-            <div className="relative">
-                <button
-                    className="m-2 p-1 font-inconsolata rounded-lg hover:bg-neutral-600/40 dark:text-dark-text text-light-text bg-light-secondary dark:bg-dark-secondary"
-                    onClick={() => {
-                        const menu = document.querySelector('#hamburgerMenu');
-                        menu.classList.toggle('hidden');
-                    }}
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-6 h-6"
+        <>
+            <div id="HotBar" className='hotbar flex fixed w-full bg-light-secondary dark:bg-dark-secondary'>
+                {/* Hamburger menu button and dropdown */}
+                <div className="relative">
+                    <button
+                        className="m-2 p-1 font-inconsolata rounded-lg hover:bg-neutral-600/40 dark:text-dark-text text-light-text bg-light-secondary dark:bg-dark-secondary"
+                        onClick={() => {
+                            const menu = document.querySelector('#hamburgerMenu');
+                            menu.classList.toggle('hidden');
+                        }}
                     >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M3.75 5.25h16.5m-16.5 6h16.5m-16.5 6h16.5"
-                        />
-                    </svg>
-                </button>
-                {/* Dropdown menu for additional options */}
-                <div
-                    id="hamburgerMenu"
-                    className="absolute top-full left-0 mt-1 ml-1 p-1 w-max bg-light-secondary dark:bg-dark-secondary shadow-lg rounded-lg hidden"
-                >
-                    {menuItems.map((item, index) => (
-                        <button
-                            key={index}
-                            className="block w-full text-left px-4 py-2 hover:bg-neutral-600/40 rounded-lg dark:text-dark-text text-light-text"
-                            onClick={() => {
-                                // Call the corresponding function based on menu item
-                                if (typeof window[menuItemsRed[index].replace(' ', '_')] === 'function') {
-                                    window[menuItemsRed[index].replace(' ', '_')]();
-                                } else {
-                                    console.warn(`Function ${menuItemsRed[index].replace(' ', '_')} is not defined`);
-                                }
-                            }}
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={2}
+                            stroke="currentColor"
+                            className="square w-6 h-6"
                         >
-                            {item}
-                        </button>
-                    ))}
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M3.75 5.25h16.5m-16.5 6h16.5m-16.5 6h16.5"
+                            />
+                        </svg>
+                    </button>
+                    {/* Dropdown menu for additional options */}
+                    <div
+                        id="hamburgerMenu"
+                        className="absolute top-full left-0 mt-1 ml-1 p-1 w-max bg-light-secondary dark:bg-dark-secondary shadow-lg rounded-lg hidden"
+                    >
+                        {menuItems.map((item, index) => (
+                            <button
+                                key={index}
+                                className="block w-full text-left px-4 py-2 hover:bg-neutral-600/40 rounded-lg dark:text-dark-text text-light-text"
+                                onClick={() => {
+                                    // Call the corresponding function based on menu item
+                                    if (typeof window[menuItemsRed[index].replace(' ', '_')] === 'function') {
+                                        window[menuItemsRed[index].replace(' ', '_')]();
+                                    } else {
+                                        console.warn(`Function ${menuItemsRed[index].replace(' ', '_')} is not defined`);
+                                    }
+                                }}
+                            >
+                                {item}
+                            </button>
+                        ))}
+                    </div>
                 </div>
+                {/* Main navigation buttons */}
+                {pages.map((page, index) => (
+                    <button
+                        key={index}
+                        className={`m-2 p-2 py-1 font-inconsolata rounded-lg hover:bg-neutral-600/40 dark:text-dark-text text-light-text ${
+                            selectedPage === pagesRed[index]
+                                ? '!bg-blue-500/40 !text-sky-400 rounded-md underline'
+                                : ''
+                        }`}
+                        onClick={() => loadPage(pagesRed[index])} // Trigger page change
+                    >
+                        {page}
+                    </button>
+                ))}
             </div>
-            {/* Main navigation buttons */}
-            {pages.map((page, index) => (
-                <button
-                    key={index}
-                    className={`m-2 p-2 py-1 font-inconsolata rounded-lg hover:bg-neutral-600/40 dark:text-dark-text text-light-text ${
-                        selectedPage === pagesRed[index]
-                            ? '!bg-blue-500/40 !text-sky-400 rounded-md underline'
-                            : ''
-                    }`}
-                    onClick={() => loadPage(pagesRed[index])} // Trigger page change
-                >
-                    {page}
-                </button>
-            ))}
-        </div>
+            <div 
+                className='absolute z-40 left-0 h-full w-full font-inconsolata dark:text-dark-text text-light-text bg-light-secondary dark:bg-dark-secondary'
+                style={{ display: 'none' }}
+                id='Settings'
+            >
+                <Settings />
+            </div>
+        </>
     );
 }
 

@@ -1,0 +1,31 @@
+{
+    "HotBar": [
+        "Anzeigen",
+        "Analysieren",
+        "Vergleichen"
+    ],
+    "Menu": [
+        "Datei importieren",
+        "Einstellungen",
+        "Hilfe"
+    ],
+    "NoFile": "Keine Datei ausgewählt",
+    "Sector": "Sektor",
+    "ComingSoon": "Bald verfügbar",
+    "Settings": [
+        {
+            "title": "Entwicklertools",
+            "description": "Entwicklertools aktivieren"
+        },
+        {
+            "title": "Thema",
+            "description": "Wählen Sie das Anwendungsthema",
+            "options": ["Hell", "Dunkel"]
+        },
+        {
+            "title": "Sprache",
+            "description": "Wählen Sie die Anwendungssprache",
+            "options": ["Italienisch", "Englisch", "Deutsch"]
+        }
+    ]
+}

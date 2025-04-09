@@ -1,0 +1,31 @@
+{
+    "HotBar": [
+        "View",
+        "Analyze",
+        "Diff"
+    ],
+    "Menu": [
+        "Import file",
+        "Settings",
+        "Help"
+    ],
+    "NoFile": "No file selected",
+    "Sector": "Sector",
+    "ComingSoon": "Coming soon",
+    "Settings": [
+        {
+            "title": "Developer tools",
+            "description": "Enable developer tools"
+        },
+        {
+            "title": "Theme",
+            "description": "Select the application theme",
+            "options": ["Light", "Dark"]
+        },
+        {
+            "title": "Language",
+            "description": "Select the application language",
+            "options": ["Italian", "English", "German"]
+        }
+    ]
+}
