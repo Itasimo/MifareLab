@@ -134,6 +134,58 @@ npm run app:build
 
 ## Contributing
 
+We welcome contributions to MifareLab! This section outlines the process for contributing to the project and the coding standards we follow.
+
+### Code Style Guidelines
+
+- **Documentation**: Use JSDoc-style comments for functions and components
+  ```jsx
+  /**
+   * Component description
+   * 
+   * @param {Object} props - Component props
+   * @param {string} props.someParam - Description of the parameter
+   * @returns {JSX.Element} - What the component renders
+   */
+  ```
+
+- **React Components**: Use functional components with hooks
+- **CSS**: Use TailwindCSS utility classes for styling, with custom CSS only when necessary
+- **Naming**: Use descriptive variable and function names
+  - Components should use PascalCase
+  - Functions and variables should use camelCase
+- **File Structure**: Place components in appropriate directories:
+  - Reusable components in `/src/components`
+  - Page components in `/src/pages`
+  - Utility functions in `/src/utils`
+
+### Pull Request Process
+
+1. Create a branch for your feature: `git checkout -b feature/your-feature-name`
+2. Make your changes following the code style guidelines
+3. Test your changes in both development and production builds
+4. Commit with clear, descriptive messages
+5. Push to your fork and submit a pull request
+6. Ensure your PR description clearly describes the problem and solution
+
+### Proposing Changes
+
+1. **For minor changes**: Submit a pull request directly with the implementation
+2. **For major features**: 
+   - First open an issue describing the feature
+   - Discuss implementation approach with maintainers
+   - Create a pull request referencing the issue
+
+### Reporting Issues
+
+When reporting issues, please include:
+- A clear description of the problem
+- Steps to reproduce
+- Expected vs actual behavior
+- Screenshots if applicable
+- System information (OS, browser, MifareLab version)
+
+By contributing to MifareLab, you agree to license your code under the same GNU General Public License v3.0 that covers the project.
 
 ## License
 
